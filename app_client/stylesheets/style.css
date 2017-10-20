@@ -1,0 +1,83 @@
+body{
+    background-color: #f5f5f5;
+  }
+  .navbar{
+    background-color: #009688;
+    border: none;
+  }
+  .navbar a{
+    color: white;
+  }
+  .fileUpload {
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+        display: inline-block;
+        padding: 10px 20px 10px 20px;
+      }
+      .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+      }
+    .btn-action{
+      width: 60px; 
+      height: 60px;  
+      border-radius: 100%; 
+      position: fixed; 
+      bottom: 40px; 
+      right: 40px; 
+      padding-top: auto; 
+      padding-bottom: auto; 
+      z-index: 2;
+    }
+    .loader{
+      color: #009688; 
+      position: absolute; 
+      left: 40%; 
+      top: 50%;
+    }
+    .student{
+      background-color: white; 
+      padding: 10px 0px 0px 5px; 
+      margin-bottom: 10px; 
+      margin-right: 5px; 
+      margin-left: 5px;
+    }
+    .tool{
+      margin-top: 5px; 
+      margin-bottom: 3px; 
+      margin-left: 10px;
+    }
+    .tool li{
+      margin-right: 10px;
+    }
+    .tool li a{
+      color:  #009688;
+    }
+    .model-loader{
+      color: #009688; 
+      position: absolute; 
+      left: 40%; 
+      top: 70%;
+    }
+    .avatar{
+      height: 80px; 
+      width: 80px; 
+      margin-left: auto; 
+      margin-right: auto; 
+      border-style: solid; 
+      border-width: 2px; 
+      border-color:  #009688;
+    }
+    .title{
+      color:  #009688;
+    }
+    .error{
+      color: red;
+    }
