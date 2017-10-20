@@ -60,7 +60,7 @@ body{
     .tool li a{
       color:  #009688;
     }
-    .model-loader{
+    .modal-loader{
       color: #009688; 
       position: absolute; 
       left: 40%; 
