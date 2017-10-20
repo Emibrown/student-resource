@@ -35,7 +35,7 @@ function editCtrl ($scope,student,studentData,$uibModalInstance,$http) {
 	$scope.update = function(){
        var uploadUrl = "/api/editstudent/"+$scope.id;
        $scope.formError = "";
-       $scope.createstud = "Updating...";
+       $scope.updatestud = "Updating...";
        var fd = new FormData();
        for(var key in $scope.student)
        		fd.append(key, $scope.student[key]);
