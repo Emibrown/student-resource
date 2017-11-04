@@ -17,12 +17,13 @@
   Loading....
 </div>
 <div class="container">
-    <div class="row student" ng-repeat ="student in students" >
-        <div class="col-xs-12">
+    <div class="row">
+        <div class="col-sm-6" ng-repeat ="student in students">
+        <div class="student">
           <div class="media">
             <div class="media-left">
-              <a href="#">
-                <img style="height: 50px; width: 50px"  class="media-object img-circle" ng-src="/upload/{{student.avatar}}" alt="">
+              <a href="">
+                <img style="height: 50px; width: 50px"  class="media-object img-circle" ng-src="{{student.avatar.path}}" alt="">
               </a>
             </div>
             <div class="media-body">
@@ -47,6 +48,7 @@
                 </li>
               </ul> 
               </div>
+            </div>
             </div>
           </div>
         </div>

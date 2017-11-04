@@ -16,7 +16,7 @@ var Storage = Multer.diskStorage({ //multers disk storage settings
         cb(null, 'public/upload')
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname)
+        cb(null, req.body.matricNo.replace(/\//g, "") + "." + mime.extension(file.mimetype))
     }
 });
 var upload = Multer({ //multer settings
@@ -33,11 +33,11 @@ var upload = Multer({ //multer settings
 //Post methods
 router.post('/student', function(req, res, next) {
  upload(req,res,function(err){
-      if(!req.body.fullname || !req.body.matricno || !req.body.department || !req.body.faculty || !req.body.school || !req.body.gender ){
+      if(!req.body.fullname || !req.body.matricNo || !req.body.department || !req.body.faculty || !req.body.school || !req.body.gender ){
            sendJSONresponse(res, 400, {"message": "Please fill the form"});
            return;
       }
-      Student.findOne({matricNo : req.body.matricno}, function(err, student){
+      Student.findOne({matricNo : req.body.matricNo}, function(err, student){
           if(err){
             return next(err)
           }
@@ -56,13 +56,17 @@ router.post('/student', function(req, res, next) {
                 }
                 var newStudent = new Student({
                   fullName : req.body.fullname,
-                  matricNo : req.body.matricno,
+                  matricNo : req.body.matricNo,
                   department: req.body.department,
                   faculty : req.body.faculty,
                   school: req.body.school,
                   gender: req.body.gender,
-                  avatar : req.file.filename
+                  avatar :{
+                          name:req.file.filename,
+                          path:"http://127.0.0.1:8080/upload/"+req.file.filename
+                        } 
                 });
+                console.log(req.file);
              newStudent.save(function(error, stud){
                     if (error) { 
                       sendJSONresponse(res, 400, {"message": "Server busy"});
@@ -98,7 +102,10 @@ router.post('/editstudent/:id', function(req, res, next) {
           faculty : req.body.faculty,
           school: req.body.school,
           gender: req.body.gender,
-          avatar : req.file.filename
+          avatar :{
+            name:req.file.filename,
+            path:"http://127.0.0.1:8080/upload/"+req.file.filename
+          } 
         };
       }else{
           var updateStudent = {
@@ -121,16 +128,16 @@ router.post('/editstudent/:id', function(req, res, next) {
 router.post('/studentremove/:id', function(req, res, next) {
     Student.findOneAndRemove({ _id: req.params.id },function(err,student) {
          if (err) { return next(err); }
-         fs.unlink("public/upload/"+student.avatar, function(err){
+         fs.unlink('public/upload/'+student.avatar.name, function(err){
           if (err && err.code == "ENOENT") {
             return sendJSONresponse(res, 400, {"message": "file doesnt exist"});
           } else if(err) {
             return sendJSONresponse(res, 400, {"message": "error"});
           }else{
               console.log("file removed");
+              sendJSONresponse(res, 200, student);
           }
          })
-        return sendJSONresponse(res, 200, student);
     });
 });
 

@@ -11,7 +11,10 @@ var studentSchema = Schema(
         faculty: {type: String, required: true},
         school:{type: String, required: true},
         gender: {type: String, required: true},
-        avatar: {type: String, required: true},
+        avatar: {
+            name: String,
+            path: String
+        },
         createdAt: {type: Date, default: Date.now},
     }
 )
