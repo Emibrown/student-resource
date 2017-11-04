@@ -16,7 +16,7 @@ var Storage = Multer.diskStorage({ //multers disk storage settings
         cb(null, 'public/upload')
     },
     filename: function (req, file, cb) {
-        cb(null, req.body.matricNo.replace(/\//g, "") + "." + mime.extension(file.mimetype))
+        cb(null, req.body.matricNo.replace(/\//g, "")+file.originalname + "." + mime.extension(file.mimetype))
     }
 });
 var upload = Multer({ //multer settings
@@ -63,7 +63,7 @@ router.post('/student', function(req, res, next) {
                   gender: req.body.gender,
                   avatar :{
                           name:req.file.filename,
-                          path:"http://127.0.0.1:8080/upload/"+req.file.filename
+                          path:"http://studentresource.cleverapps.io/upload/"+req.file.filename
                         } 
                 });
                 console.log(req.file);
@@ -104,7 +104,7 @@ router.post('/editstudent/:id', function(req, res, next) {
           gender: req.body.gender,
           avatar :{
             name:req.file.filename,
-            path:"http://127.0.0.1:8080/upload/"+req.file.filename
+           path:"http://studentresource.cleverapps.io/upload/"+req.file.filename
           } 
         };
       }else{
