@@ -1,2 +1,2 @@
 # student-resource
-web app
+A web app
