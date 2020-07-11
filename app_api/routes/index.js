@@ -63,7 +63,7 @@ router.post('/student', function(req, res, next) {
                   gender: req.body.gender,
                   avatar :{
                           name:req.file.filename,
-                          path:"http://studentresource.cleverapps.io/upload/"+req.file.filename
+                          path:"http://127.0.0.1:8080/upload/"+req.file.filename
                         } 
                 });
                 console.log(req.file);
@@ -104,7 +104,7 @@ router.post('/editstudent/:id', function(req, res, next) {
           gender: req.body.gender,
           avatar :{
             name:req.file.filename,
-           path:"http://studentresource.cleverapps.io/upload/"+req.file.filename
+            path:"http://127.0.0.1:8080/upload/"+req.file.filename
           } 
         };
       }else{
